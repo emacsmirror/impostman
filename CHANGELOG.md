@@ -6,6 +6,12 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- Import `bearer` authentication from collection ([#8](https://github.com/flashcode/impostman/issues/8))
+
 ## [0.2.0] - 2021-12-11
 
 ### Added
@@ -23,5 +29,6 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 - First release
 
+[Unreleased]: https://github.com/flashcode/impostman/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/flashcode/impostman/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/flashcode/impostman/releases/tag/v0.1.0

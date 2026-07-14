@@ -1,6 +1,6 @@
 ;;; impostman.el --- Import Postman collections  -*- lexical-binding: t -*-
 
-;; SPDX-FileCopyrightText: 2020-2025 Sébastien Helleu <flashcode@flashtux.org>
+;; SPDX-FileCopyrightText: 2020-2026 Sébastien Helleu <flashcode@flashtux.org>
 
 ;; SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -363,6 +363,18 @@ AUTH is a hash table."
                  (push
                   (cons "Authorization" (concat "Basic " auth-base64))
                   headers)))))
+          ((string= auth-type "bearer")
+           (let (token (bearer (gethash "bearer" auth [])))
+             (dotimes (i (length bearer))
+               (let* ((item (elt bearer i))
+                      (key (gethash "key" item ""))
+                      (value (gethash "value" item "")))
+                 (when (string= key "token")
+                   (setq token value))))
+             (when token
+               (push
+                (cons "Authorization" (concat "Bearer " token))
+                headers))))
           ((string= auth-type "apikey")
            (let ((apikey (gethash "apikey" auth []))
                  apikey-key apikey-value apikey-in)

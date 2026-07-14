@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2021-2025 Sébastien Helleu <flashcode@flashtux.org>
+SPDX-FileCopyrightText: 2021-2026 Sébastien Helleu <flashcode@flashtux.org>
 
 SPDX-License-Identifier: GPL-3.0-or-later
 -->
@@ -256,7 +256,7 @@ Arguments:
 
 For now the package offers a basic support of Postman collections and environments, the following features are partially implemented:
 
-- authentication: only `basic` and `apikey` are supported
+- authentication: only `basic`, `bearer` and `apikey` are supported
 - body: only `raw` is supported.
 
 Pull requests are welcome to add missing features.
@@ -264,7 +264,7 @@ Pull requests are welcome to add missing features.
 ## Copyright
 
 <!-- REUSE-IgnoreStart -->
-Copyright © 2020-2025 [Sébastien Helleu](https://github.com/flashcode)
+Copyright © 2020-2026 [Sébastien Helleu](https://github.com/flashcode)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

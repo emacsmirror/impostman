@@ -1,6 +1,6 @@
 ;;; impostman-test.el --- Test suite for impostman  -*- lexical-binding: t -*-
 
-;; SPDX-FileCopyrightText: 2020-2025 Sébastien Helleu <flashcode@flashtux.org>
+;; SPDX-FileCopyrightText: 2020-2026 Sébastien Helleu <flashcode@flashtux.org>
 
 ;; SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -514,6 +514,8 @@ FILENAME is a complete path to a file."
                                                  "value" "user1")))
         (password #s(hash-table test equal data ("key" "password"
                                                  "value" "Password!")))
+        (token #s(hash-table test equal data ("key" "token"
+                                              "value" "1a2b3c4d")))
         (apikey-key #s(hash-table test equal data ("key" "key"
                                                    "value" "apikey")))
         (apikey-value #s(hash-table test equal data ("key" "value"
@@ -556,6 +558,17 @@ FILENAME is a complete path to a file."
                    `(("Authorization" .
                       ,(concat "Basic "
                                (base64-encode-string "user1:Password!"))))))
+    ;; test bearer
+    (clrhash auth)
+    (puthash "type" "bearer" auth)
+    (should (equal (impostman--build-auth-headers auth)
+                   nil))
+    (puthash "bearer" [] auth)
+    (should (equal (impostman--build-auth-headers auth)
+                   nil))
+    (puthash "bearer" (vector token) auth)
+    (should (equal (impostman--build-auth-headers auth)
+                   '(("Authorization" . "Bearer 1a2b3c4d"))))
     ;; test apikey
     (clrhash auth)
     (puthash "type" "apikey" auth)
